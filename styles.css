@@ -51,3 +51,26 @@ body {
   box-shadow: 0 0 20px white;
   background-color: grey;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .btn {
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+  }
+
+  #level-title {
+    font-size: 2rem;
+  }
+}
+
+#high-score {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  color: #FEF2BF;
+  margin-bottom: 20px;
+}

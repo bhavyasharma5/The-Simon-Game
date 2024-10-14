@@ -6,6 +6,9 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
+// Add a high score feature
+var highScore = 0;
+
 $(document).keypress(function() {
   if (!started) {
     $("#level-title").text("Level " + level);
@@ -13,6 +16,9 @@ $(document).keypress(function() {
     started = true;
   }
 });
+
+// Add event listener for touch events
+$(document).on("touchstart", handleTouchStart);
 
 $(".btn").click(function() {
 
@@ -29,6 +35,11 @@ function checkAnswer(currentLevel) {
 
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
       if (userClickedPattern.length === gamePattern.length){
+        // Update high score
+        if (level > highScore) {
+          highScore = level;
+          $("#high-score").text("High Score: " + highScore);
+        }
         setTimeout(function () {
           nextSequence();
         }, 1000);
@@ -45,7 +56,6 @@ function checkAnswer(currentLevel) {
       startOver();
     }
 }
-
 
 function nextSequence() {
   userClickedPattern = [];
@@ -75,4 +85,12 @@ function startOver() {
   level = 0;
   gamePattern = [];
   started = false;
+}
+
+function handleTouchStart() {
+  if (!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
 }
